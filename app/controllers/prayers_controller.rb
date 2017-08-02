@@ -1,7 +1,9 @@
 class PrayersController < ApplicationController
   def index
-    @prayers = current_user.prayers
-    @new_prayer = current_user.prayers.build
+    if current_user
+      @prayers = current_user.prayers
+      @new_prayer = current_user.prayers.build
+    end
   end
 
   def create
