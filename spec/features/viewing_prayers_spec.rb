@@ -11,5 +11,10 @@ RSpec.feature 'viewing prayers', type: :feature do
     prayers.each do |prayer|
       expect(page).to have_content(prayer.text)
     end
+
+    fill_in :prayer_text, with: 'Custom prayer'
+    click_on 'Add Prayer'
+
+    expect(page).to have_content('Custom prayer')
   end
 end

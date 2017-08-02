@@ -1,3 +1,8 @@
+<%= form_for @new_prayer do |f| %>
+  <%= f.text_field :text %>
+  <%= f.submit 'Add Prayer' %>
+<% end %>
+
 <% @prayers.each do |prayer| %>
   <div>
     <%= prayer.text %>
