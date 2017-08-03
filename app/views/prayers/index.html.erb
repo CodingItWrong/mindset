@@ -1,13 +1,21 @@
 <% if current_user %>
   <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
   <%= form_for @new_prayer do |f| %>
-    <%= f.text_field :text %>
-    <%= f.submit 'Add Prayer' %>
+    <div class="row">
+      <div class="col-sm-12 col-md-10">
+        <%= f.text_field :text, placeholder: 'Prayer', class: 'form-control' %>
+      </div>
+      <div class="col-sm-12 col-md-2">
+        <%= f.submit 'Add Prayer', class: 'btn btn-default btn-block' %>
+      </div>
+    </div>
   <% end %>
 
   <% @prayers.each do |prayer| %>
-    <div>
-      <%= prayer.text %>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <%= prayer.text %>
+      </div>
     </div>
   <% end %>
 <% else %>
