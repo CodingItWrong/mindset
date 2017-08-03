@@ -1,2 +1,5 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+/* fixed top header padding */
+body { padding-top: 70px; }
