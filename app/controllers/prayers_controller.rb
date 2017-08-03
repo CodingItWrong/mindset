@@ -2,7 +2,7 @@ class PrayersController < ApplicationController
   def index
     if current_user
       @prayers = current_user.prayers
-      @new_prayer = current_user.prayers.build
+      @new_prayer = Prayer.new
     end
   end
 
