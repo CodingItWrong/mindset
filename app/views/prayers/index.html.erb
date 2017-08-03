@@ -1,5 +1,4 @@
 <% if current_user %>
-  <%= link_to 'Log out', destroy_user_session_path, method: :delete %>
   <%= form_for @new_prayer do |f| %>
     <div class="row">
       <div class="col-sm-12 col-md-10">
@@ -19,6 +18,5 @@
     </div>
   <% end %>
 <% else %>
-  <%= link_to 'Log in', new_user_session_path %>
-  <%= link_to 'Sign up', new_user_registration_path %>
+  Sign in or register to record prayers!
 <% end %>
