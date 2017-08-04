@@ -16,6 +16,12 @@ class PrayersController < ApplicationController
     end
   end
 
+  def destroy
+    @prayer = Prayer.find(params[:id])
+    @prayer.destroy!
+    redirect_to root_path
+  end
+
   private
 
   def prayer_params

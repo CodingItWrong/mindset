@@ -16,5 +16,9 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Add Prayer'
 
     expect(page).to have_content('Custom prayer')
+
+    find('.panel:last-child a').click
+
+    expect(page).not_to have_content('Custom prayer')
   end
 end
