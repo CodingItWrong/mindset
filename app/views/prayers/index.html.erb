@@ -1,11 +1,13 @@
 <% if current_user %>
   <%= form_for @new_prayer do |f| %>
-    <div class="row">
-      <div class="col-sm-12 col-md-10">
-        <%= f.text_field :text, placeholder: 'Prayer', class: 'form-control' %>
-      </div>
-      <div class="col-sm-12 col-md-2">
-        <%= f.submit 'Add Prayer', class: 'btn btn-default btn-block' %>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm-12 col-md-10">
+          <%= f.text_field :text, placeholder: 'Prayer', class: 'form-control' %>
+        </div>
+        <div class="col-sm-12 col-md-2">
+          <%= f.submit 'Add Prayer', class: 'btn btn-default btn-block' %>
+        </div>
       </div>
     </div>
   <% end %>
