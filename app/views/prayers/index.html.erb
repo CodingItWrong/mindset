@@ -5,8 +5,16 @@
       <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs pull-right' %>
     </div>
   </div>
-  <%= link_to 'Next', root_path, class: 'btn btn-default' %>
-  <%= link_to 'Add Prayer', new_prayer_path, class: 'btn btn-default' %>
+  <div class="row">
+    <div class="hidden-xs hidden-sm col-md-6"></div>
+    <div class="col-sm-12 col-md-3">
+      <%= link_to 'Next', root_path, class: 'btn btn-primary btn-block' %>
+    </div>
+    <div class="col-sm-12 col-md-3">
+      <%= link_to 'Add Prayer', new_prayer_path, class: 'btn btn-default btn-block' %>
+    </div>
+  </div>
+
 <% else %>
   Sign in or register to record prayers!
 <% end %>
