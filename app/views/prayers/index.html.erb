@@ -1,25 +1,12 @@
 <% if current_user %>
-  <%= form_for @new_prayer do |f| %>
-    <div class="form-group">
-      <div class="row">
-        <div class="col-sm-12 col-md-10">
-          <%= f.text_field :text, placeholder: 'Prayer', class: 'form-control' %>
-        </div>
-        <div class="col-sm-12 col-md-2">
-          <%= f.submit 'Add Prayer', class: 'btn btn-default btn-block' %>
-        </div>
-      </div>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= @prayer.text %>
+      <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs pull-right' %>
     </div>
-  <% end %>
-
-  <% @prayers.each do |prayer| %>
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= prayer.text %>
-        <%= link_to '×', prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs pull-right' %>
-      </div>
-    </div>
-  <% end %>
+  </div>
+  <%= link_to 'Next', root_path, class: 'btn btn-default' %>
+  <%= link_to 'Add Prayer', new_prayer_path, class: 'btn btn-default' %>
 <% else %>
   Sign in or register to record prayers!
 <% end %>

@@ -1,23 +1,26 @@
 class PrayersController < ApplicationController
   def index
     if current_user
-      @prayers = current_user.prayers
-      @new_prayer = Prayer.new
+      redirect_to new_prayer_path if current_user.prayers.empty?
+      @prayer = current_user.prayers.sample
     end
   end
 
+  def new
+    @prayer = current_user.prayers.build
+  end
+
   def create
-    @new_prayer = current_user.prayers.create(prayer_params)
-    if @new_prayer.save
+    @prayer = current_user.prayers.build(prayer_params)
+    if @prayer.save
       redirect_to root_path
     else
-      @prayers = current_user.prayers
-      render :index
+      render :new
     end
   end
 
   def destroy
-    @prayer = Prayer.find(params[:id])
+    @prayer = current_user.prayers.find(params[:id])
     @prayer.destroy!
     redirect_to root_path
   end

@@ -5,20 +5,21 @@ RSpec.feature 'viewing prayers', type: :feature do
     user = FactoryGirl.create(:user)
     sign_in user
 
-    prayers = FactoryGirl.create_list(:prayer, 3, user: user)
-
     visit '/'
-    prayers.each do |prayer|
-      expect(page).to have_content(prayer.text)
-    end
-
     fill_in :prayer_text, with: 'Custom prayer'
-    click_on 'Add Prayer'
+    click_on 'Save Prayer'
 
     expect(page).to have_content('Custom prayer')
 
-    find('.panel:last-child a').click
+    click_on 'Add Prayer'
+
+    fill_in :prayer_text, with: 'Another prayer'
+    click_on 'Save Prayer'
+
+    click_on 'Delete'
+    click_on 'Delete'
 
     expect(page).not_to have_content('Custom prayer')
+    expect(page).not_to have_content('Another prayer')
   end
 end
