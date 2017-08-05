@@ -1,7 +1,7 @@
 <% if current_user %>
   <div class="panel panel-default">
     <div class="panel-body">
-      <%= @prayer.text %>
+      <p class="lead"><%= @prayer.text %></p>
       <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'pull-right' %>
     </div>
   </div>
