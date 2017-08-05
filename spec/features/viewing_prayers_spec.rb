@@ -9,6 +9,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     fill_in :prayer_text, with: 'Custom prayer'
     click_on 'Save Prayer'
 
+    expect(page).to have_content('Prayer created')
     expect(page).to have_content('Custom prayer')
 
     click_on 'Add Prayer'
@@ -18,6 +19,8 @@ RSpec.feature 'viewing prayers', type: :feature do
 
     click_on 'Delete'
     click_on 'Delete'
+
+    expect(page).to have_content('Prayer deleted')
 
     expect(page).not_to have_content('Custom prayer')
     expect(page).not_to have_content('Another prayer')

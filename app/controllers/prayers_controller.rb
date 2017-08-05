@@ -13,7 +13,7 @@ class PrayersController < ApplicationController
   def create
     @prayer = current_user.prayers.build(prayer_params)
     if @prayer.save
-      redirect_to root_path
+      redirect_to root_path, notice: 'Prayer created.'
     else
       render :new
     end
@@ -22,7 +22,7 @@ class PrayersController < ApplicationController
   def destroy
     @prayer = current_user.prayers.find(params[:id])
     @prayer.destroy!
-    redirect_to root_path
+    redirect_to root_path, notice: 'Prayer deleted.'
   end
 
   private
