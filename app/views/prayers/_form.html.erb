@@ -1,0 +1,28 @@
+<% if @prayer.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @prayer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= form_for @prayer do |f| %>
+  <div class="form-group">
+    <%= f.text_area :text, placeholder: 'Prayer', rows: 3, class: 'form-control input-lg' %>
+  </div>
+  <div class="row">
+    <div class="hidden-xs hidden-sm col-md-6"></div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <%= f.submit 'Save Prayer', class: 'btn btn-primary btn-lg btn-block' %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <%= link_to 'Cancel', root_path, class: 'btn btn-default btn-lg btn-block' %>
+      </div>
+    </div>
+  </div>
+<% end %>
