@@ -19,6 +19,19 @@ class PrayersController < ApplicationController
     end
   end
 
+  def edit
+    @prayer = current_user.prayers.find(params[:id])
+  end
+
+  def update
+    @prayer = current_user.prayers.find(params[:id])
+    if @prayer.update(prayer_params)
+      redirect_to root_path, notice: 'Prayer updated.'
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @prayer = current_user.prayers.find(params[:id])
     @prayer.destroy!

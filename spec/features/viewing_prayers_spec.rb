@@ -18,9 +18,17 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Save Prayer'
 
     click_on 'Delete'
-    click_on 'Delete'
 
     expect(page).to have_content('Prayer deleted')
+
+    click_on "Edit"
+    fill_in :prayer_text, with: 'Enhanced prayer'
+    click_on 'Save Prayer'
+
+    expect(page).to have_content('Prayer updated')
+    expect(page).to have_content('Enhanced prayer')
+
+    click_on 'Delete'
 
     expect(page).not_to have_content('Custom prayer')
     expect(page).not_to have_content('Another prayer')
