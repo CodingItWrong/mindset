@@ -1,7 +1,7 @@
 <% if current_user %>
   <div class="panel panel-default">
     <div class="panel-body">
-      <p class="lead"><%= @prayer.text %></p>
+      <p class="lead"><%= prayer_html(@prayer).html_safe %></p>
       <div class="pull-right">
         <%= link_to 'Edit', edit_prayer_path(@prayer) %>
         |
