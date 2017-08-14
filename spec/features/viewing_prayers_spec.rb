@@ -17,6 +17,8 @@ RSpec.feature 'viewing prayers', type: :feature do
     fill_in :prayer_text, with: 'Another prayer'
     click_on 'Save Prayer'
 
+    expect(page).to have_content('Another prayer')
+
     click_on 'Delete'
 
     expect(page).to have_content('Prayer deleted')

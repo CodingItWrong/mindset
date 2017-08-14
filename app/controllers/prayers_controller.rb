@@ -2,7 +2,11 @@ class PrayersController < ApplicationController
   def index
     if current_user
       redirect_to new_prayer_path if current_user.prayers.empty?
-      @prayer = current_user.prayers.sample
+      if prayer_id = flash[:next_prayer_id]
+        @prayer = current_user.prayers.find(prayer_id)
+      else
+        @prayer = current_user.prayers.sample
+      end
     end
   end
 
@@ -13,6 +17,7 @@ class PrayersController < ApplicationController
   def create
     @prayer = current_user.prayers.build(prayer_params)
     if @prayer.save
+      flash[:next_prayer_id] = @prayer.id
       redirect_to root_path, notice: 'Prayer created.'
     else
       render :new
