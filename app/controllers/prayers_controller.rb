@@ -7,7 +7,11 @@ class PrayersController < ApplicationController
         if next_prayer_id = flash[:next_prayer_id]
           @prayer = current_user.prayers.find(next_prayer_id)
         elsif last_prayer_id = flash[:last_prayer_id]
-          @prayer = current_user.prayers.where('id <> ?', flash[:last_prayer_id]).sample
+          if current_user.prayers.where('id <> ?', flash[:last_prayer_id]).count > 0
+            @prayer = current_user.prayers.where('id <> ?', flash[:last_prayer_id]).sample
+          else
+            @prayer = current_user.prayers.sample
+          end
         else
           @prayer = current_user.prayers.sample
         end
