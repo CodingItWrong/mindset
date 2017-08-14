@@ -31,6 +31,7 @@ class PrayersController < ApplicationController
   def update
     @prayer = current_user.prayers.find(params[:id])
     if @prayer.update(prayer_params)
+      flash[:next_prayer_id] = @prayer.id
       redirect_to root_path, notice: 'Prayer updated.'
     else
       render :edit
