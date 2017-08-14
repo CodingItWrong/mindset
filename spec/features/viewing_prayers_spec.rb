@@ -26,6 +26,10 @@ RSpec.feature 'viewing prayers', type: :feature do
     expect(page).to have_content('Prayer updated')
     expect(page).to have_content('Enhanced prayer')
 
+    click_on "Next"
+
+    expect(page).to have_content('Custom prayer')
+
     click_on 'Delete'
 
     expect(page).to have_content('Prayer deleted')

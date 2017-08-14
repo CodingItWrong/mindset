@@ -1,11 +1,17 @@
 class PrayersController < ApplicationController
   def index
     if current_user
-      redirect_to new_prayer_path if current_user.prayers.empty?
-      if prayer_id = flash[:next_prayer_id]
-        @prayer = current_user.prayers.find(prayer_id)
+      if current_user.prayers.empty?
+        redirect_to new_prayer_path
       else
-        @prayer = current_user.prayers.sample
+        if next_prayer_id = flash[:next_prayer_id]
+          @prayer = current_user.prayers.find(next_prayer_id)
+        elsif last_prayer_id = flash[:last_prayer_id]
+          @prayer = current_user.prayers.where('id <> ?', flash[:last_prayer_id]).sample
+        else
+          @prayer = current_user.prayers.sample
+        end
+        flash[:last_prayer_id] = @prayer.id
       end
     end
   end
