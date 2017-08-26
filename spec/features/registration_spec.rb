@@ -15,7 +15,6 @@ RSpec.feature 'registration', type: :feature do
 
     click_on 'Sign out'
 
-    click_on 'Sign in'
     fill_in 'Email', with: 'example@example.com'
     fill_in 'Password', with: password
     click_on 'Log in'
