@@ -1,0 +1,7 @@
+#!/usr/bin/env ansible-playbook -i hosts
+---
+- hosts: web
+  vars_files:
+    - vars.yml
+  roles:
+    - { role: ruby }
