@@ -4,4 +4,5 @@
   vars_files:
     - vars.yml
   roles:
-    - { role: ruby }
+    - { role: ruby, tags: ['ruby'] }
+    - { role: postgres, tags: ['postgres'] }
