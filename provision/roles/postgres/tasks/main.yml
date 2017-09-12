@@ -21,9 +21,12 @@
 
 - name: ensure correct version of postgres is installed
   yum:
-    name: postgresql{{ postgres_version_no_dot }}-server
+    name: "{{ item }}"
     state: latest
   become: yes
+  with_items:
+    - postgresql{{ postgres_version_no_dot }}-server
+    - postgresql-devel
 
 - name: ensure postgres DB is initialized
   command: service postgresql-{{ postgres_version }} initdb

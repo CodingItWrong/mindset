@@ -38,3 +38,13 @@
 - name: update bundler including shims
   when: bundler_path.stdout.find('bundle') == -1
   command: '/home/josh/.rbenv/shims/gem install bundler'
+
+- name: check if postgres ruby gem installed
+  shell: /home/josh/.rbenv/shims/gem list pg
+  register: pg_installed
+  changed_when: false
+
+- name: ensure postgres ruby gem installed
+  when: pg_installed.stdout.find('pg') == -1
+  become: yes
+  command: "/home/josh/.rbenv/shims/gem install pg -v '0.21.0' -- --with-pg-config=/usr/pgsql-9.6/bin/pg_config"
