@@ -35,7 +35,9 @@ class PrayersController < ApplicationController
   end
 
   def edit
-    @prayer = current_user.prayers.find(params[:id])
+    prayer_id = params[:id]
+    @prayer = current_user.prayers.find(prayer_id)
+    flash[:next_prayer_id] = prayer_id
   end
 
   def update
