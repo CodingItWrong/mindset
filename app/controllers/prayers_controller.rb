@@ -1,23 +1,14 @@
+# frozen_string_literal: true
+
 class PrayersController < ApplicationController
   def index
-    if current_user
-      if current_user.prayers.empty?
-        redirect_to new_prayer_path
-      else
-        if next_prayer_id = flash[:next_prayer_id]
-          @prayer = current_user.prayers.find(next_prayer_id)
-        elsif last_prayer_id = flash[:last_prayer_id]
-          if current_user.prayers.where('id <> ?', flash[:last_prayer_id]).count > 0
-            @prayer = current_user.prayers.where('id <> ?', flash[:last_prayer_id]).sample
-          else
-            @prayer = current_user.prayers.sample
-          end
-        else
-          @prayer = current_user.prayers.sample
-        end
-        flash[:last_prayer_id] = @prayer.id
-      end
+    if current_user.prayers.empty?
+      redirect_to new_prayer_path
+      return
     end
+
+    @prayer = prayer_to_show
+    flash[:last_prayer_id] = @prayer.id
   end
 
   def new
@@ -57,6 +48,29 @@ class PrayersController < ApplicationController
   end
 
   private
+
+  def prayer_to_show
+    if (next_prayer_id = flash[:next_prayer_id])
+      current_user.prayers.find(next_prayer_id)
+    elsif flash[:last_prayer_id]
+      random_prayer
+    else
+      current_user.prayers.sample
+    end
+  end
+
+  def random_prayer
+    if other_prayers.any?
+      other_prayers.sample
+    else
+      current_user.prayers.sample
+    end
+  end
+
+  def other_prayers
+    last_id = flash[:last_prayer_id]
+    @other_prayers ||= current_user.prayers.where('id <> ?', last_id)
+  end
 
   def prayer_params
     params.require(:prayer).permit(:text)
