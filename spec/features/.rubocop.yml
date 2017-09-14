@@ -1,0 +1,3 @@
+# https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+Metrics/BlockLength:
+  Enabled: false
