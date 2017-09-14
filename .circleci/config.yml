@@ -9,7 +9,8 @@ jobs:
       # specify the version you desire here
        - image: circleci/ruby:2.4.1-node-browsers
          environment:
-           DATABASE_URL: "postgres://prayer_app@127.0.0.1/prayer_app_test"
+           PGHOST: 127.0.0.1
+           PGUSER: prayer_app
        - image: circleci/postgres:9.6-alpine
          environment:
            POSTGRES_USER: prayer_app
