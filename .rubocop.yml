@@ -1,11 +1,17 @@
 # https://github.com/bbatsov/rubocop/blob/master/config/default.yml
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.4
 
   # Don't check binstubs or gemfile
   Exclude:
     - 'bin/**/*'
+    - 'config.ru'
+    - 'config/**/*.rb'
+    - 'db/**/*.rb'
     - 'Gemfile'
+    - 'Rakefile'
+    - 'spec/*_helper.rb'
+    - 'spec/factories/*.rb'
 
 # Don't restrict length of modules/files
 Metrics/ModuleLength:
