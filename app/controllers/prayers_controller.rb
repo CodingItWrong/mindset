@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PrayersController < ApplicationController
-  def index
+  def show
     if current_user.prayers.empty?
       redirect_to new_prayer_path
       return
