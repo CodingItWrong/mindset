@@ -14,6 +14,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     creating_first_prayer_displays_that_prayer(prayer1)
     next_when_only_one_prayer_redisplays(prayer1)
     creating_additional_prayer_displays_that_prayer(prayer2)
+    list_displays([prayer1, prayer2], then_select: prayer2)
     editing_prayer_redisplays_same_prayer(updated_prayer2)
     editing_prayer_and_cancelling_redisplays_same_prayer(updated_prayer2)
     next_displays(prayer1)
@@ -44,6 +45,14 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Save Prayer'
 
     expect(page).to have_content(prayer)
+  end
+
+  def list_displays(prayers, then_select:)
+    click_on 'All Prayers'
+    aggregate_failures do
+      prayers.each { |prayer| expect(page).to have_content(prayer) }
+    end
+    click_on then_select
   end
 
   def editing_prayer_redisplays_same_prayer(prayer)

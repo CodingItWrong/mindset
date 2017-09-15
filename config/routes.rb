@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :prayers, only: [:new, :create, :edit, :update, :destroy]
+  resources :prayers
   authenticated do
     root to: 'prayers#show'
   end

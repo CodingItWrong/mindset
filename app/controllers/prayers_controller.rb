@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 class PrayersController < ApplicationController
+  def index
+    @prayers = current_user.prayers.order(:text)
+  end
+
   def show
     if current_user.prayers.empty?
       redirect_to new_prayer_path
@@ -50,8 +54,8 @@ class PrayersController < ApplicationController
   private
 
   def prayer_to_show
-    if (next_prayer_id = flash[:next_prayer_id])
-      current_user.prayers.find(next_prayer_id)
+    if (prayer_id = params[:id] || flash[:next_prayer_id])
+      current_user.prayers.find(prayer_id)
     elsif flash[:last_prayer_id]
       random_prayer
     else
