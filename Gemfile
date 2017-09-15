@@ -28,6 +28,7 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
+  gem 'rspec_junit_formatter' # for circleci
 end
 
 group :production do
