@@ -2,7 +2,7 @@
 
 class PrayersController < ApplicationController
   def index
-    @prayers = current_user.prayers.order(:text)
+    @prayers = current_user.unanswered_prayers.order(:text)
   end
 
   def show
