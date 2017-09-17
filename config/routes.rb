@@ -2,8 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :prayers, except: :index do
     collection do
-      resources :unanswered, only: [:index]
-      resources :answered, only: [:index]
+      scope module: 'prayers' do
+        resources :unanswered, only: [:index]
+        resources :answered, only: [:index]
+      end
     end
     resource :answer, only: [:new, :create]
   end
