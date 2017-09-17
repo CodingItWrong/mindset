@@ -90,6 +90,8 @@ RSpec.feature 'viewing prayers', type: :feature do
     expect(page).to have_content(prayer)
 
     click_on 'Answer'
+    expect(page).to have_content(prayer)
+
     fill_in :answer_text, with: 'It happened!'
     click_on 'Mark Answered'
 
