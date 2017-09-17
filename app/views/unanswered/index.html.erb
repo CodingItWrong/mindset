@@ -1,7 +1,3 @@
 <h2>Unanswered</h2>
 
-<ul class="list-group">
-  <% @prayers.each do |prayer| %>
-    <li class="list-group-item"><%= link_to prayer.text, prayer %></li>
-  <% end %>
-</ul>
+<%= render partial: 'prayers/list' %>
