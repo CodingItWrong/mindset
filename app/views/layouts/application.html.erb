@@ -25,8 +25,8 @@
         <div class="collapse navbar-collapse" id="prayerapp-navbar">
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-              <li><%= link_to 'Unanswered', unanswered_index_path %></li>
-              <li><%= link_to 'Answered', answered_index_path %></li>
+              <li><%= link_to 'Unanswered', unanswered_prayers_path %></li>
+              <li><%= link_to 'Answered', answered_prayers_path %></li>
               <li><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></li>
             <% else %>
               <li><%= link_to 'Sign in', new_user_session_path %></li>

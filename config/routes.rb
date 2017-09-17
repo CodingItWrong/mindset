@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :prayers, except: :index do
     collection do
       scope module: 'prayers' do
-        resources :unanswered, only: [:index]
-        resources :answered, only: [:index]
+        resources :unanswered, only: [:index], as: 'unanswered_prayers'
+        resources :answered, only: [:index], as: 'answered_prayers'
       end
     end
     resource :answer, only: [:new, :create]
