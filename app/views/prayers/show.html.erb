@@ -1,15 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-body">
-    <p class="lead"><%= prayer_html(@prayer).html_safe %></p>
-    <div class="pull-right">
-      <%= link_to 'Answer', new_prayer_answer_path(@prayer) %>
-      |
-      <%= link_to 'Edit', edit_prayer_path(@prayer) %>
-      |
-      <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' } %>
-    </div>
+<%= render 'detail' do %>
+  <div class="pull-right">
+    <%= link_to 'Answer', new_prayer_answer_path(@prayer) %>
+    |
+    <%= link_to 'Edit', edit_prayer_path(@prayer) %>
+    |
+    <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' } %>
   </div>
-</div>
+<% end %>
 <div class="row">
   <div class="hidden-xs hidden-sm col-md-6"></div>
   <div class="col-xs-12 col-sm-6 col-md-3">
