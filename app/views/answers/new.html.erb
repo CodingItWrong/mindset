@@ -1,0 +1,34 @@
+<% if @answer.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @answer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p class="lead"><%= prayer_html(@prayer).html_safe %></p>
+  </div>
+</div>
+
+<%= form_for @answer, url: prayer_answer_path do |f| %>
+  <div class="form-group">
+    <%= f.text_area :text, placeholder: 'Answer', rows: 3, class: 'form-control input-lg' %>
+  </div>
+  <div class="row">
+    <div class="hidden-xs hidden-sm col-md-6"></div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <%= f.submit 'Mark Answered', class: 'btn btn-primary btn-lg btn-block' %>
+      </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-3">
+      <div class="form-group">
+        <%= link_to 'Cancel', prayer_path(@prayer), class: 'btn btn-default btn-lg btn-block' %>
+      </div>
+    </div>
+  </div>
+<% end %>
