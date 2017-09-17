@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :prayers do
+  resources :prayers, except: :index do
+    collection do
+      resources :unanswered, only: [:index]
+      resources :answered, only: [:index]
+    end
     resource :answer, only: [:new, :create]
   end
   authenticated do

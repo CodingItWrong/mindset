@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   has_many :prayers
 
+  def answered_prayers
+    Prayer.answered { prayers }
+  end
+
   def unanswered_prayers
     Prayer.unanswered { prayers }
   end

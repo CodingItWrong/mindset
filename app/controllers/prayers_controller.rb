@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 class PrayersController < ApplicationController
-  def index
-    @prayers = current_user.unanswered_prayers.order(:text)
-  end
-
   def show
     if current_user.unanswered_prayers.empty?
       redirect_to new_prayer_path

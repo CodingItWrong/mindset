@@ -21,6 +21,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     deleting_prayer_displays(updated_prayer2)
     answering_prayer_hides_it(updated_prayer2)
     answered_prayer_not_shown_in_unanswered_list(updated_prayer2)
+    answered_prayer_shown_in_answered_list(updated_prayer2)
   end
 
   private
@@ -50,7 +51,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def list_displays(prayers, then_select:)
-    click_on 'All Prayers'
+    click_on 'Unanswered'
     aggregate_failures do
       prayers.each { |prayer| expect(page).to have_content(prayer) }
     end
@@ -97,7 +98,12 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def answered_prayer_not_shown_in_unanswered_list(prayer)
-    click_on 'All Prayers'
+    click_on 'Unanswered'
     expect(page).not_to have_content(prayer)
+  end
+
+  def answered_prayer_shown_in_answered_list(prayer)
+    click_on 'Answered'
+    expect(page).to have_content(prayer)
   end
 end

@@ -5,5 +5,6 @@ class Prayer < ApplicationRecord
 
   validates :text, presence: true
 
+  scope :answered, -> { where.not(answer: nil) }
   scope :unanswered, -> { where(answer: nil) }
 end
