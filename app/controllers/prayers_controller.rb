@@ -9,7 +9,7 @@ class PrayersController < ApplicationController
         redirect_to new_prayer_path
         return
       end
-      @prayer = prayer_to_show
+      @prayer = random_prayer
     end
     flash[:last_prayer_id] = @prayer.id
   end
@@ -48,14 +48,6 @@ class PrayersController < ApplicationController
   end
 
   private
-
-  def prayer_to_show
-    if flash[:last_prayer_id]
-      random_prayer
-    else
-      current_user.unanswered_prayers.sample
-    end
-  end
 
   def random_prayer
     if other_prayers.any?
