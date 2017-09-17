@@ -107,5 +107,8 @@ RSpec.feature 'viewing prayers', type: :feature do
   def answered_prayer_shown_in_answered_list(prayer)
     click_on 'Answered'
     expect(page).to have_content(prayer)
+
+    click_on prayer
+    expect(page).to have_content(prayer)
   end
 end
