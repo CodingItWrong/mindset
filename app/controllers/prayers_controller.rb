@@ -18,8 +18,7 @@ class PrayersController < ApplicationController
   def create
     @prayer = current_user.prayers.build(prayer_params)
     if @prayer.save
-      flash[:next_prayer_id] = @prayer.id
-      redirect_to root_path, notice: 'Prayer created.'
+      redirect_to @prayer, notice: 'Prayer created.'
     else
       render :new
     end
@@ -28,14 +27,12 @@ class PrayersController < ApplicationController
   def edit
     prayer_id = params[:id]
     @prayer = current_user.prayers.find(prayer_id)
-    flash[:next_prayer_id] = prayer_id
   end
 
   def update
     @prayer = current_user.prayers.find(params[:id])
     if @prayer.update(prayer_params)
-      flash[:next_prayer_id] = @prayer.id
-      redirect_to root_path, notice: 'Prayer updated.'
+      redirect_to @prayer, notice: 'Prayer updated.'
     else
       render :edit
     end
@@ -50,7 +47,7 @@ class PrayersController < ApplicationController
   private
 
   def prayer_to_show
-    if (prayer_id = params[:id] || flash[:next_prayer_id])
+    if (prayer_id = params[:id])
       current_user.unanswered_prayers.find(prayer_id)
     elsif flash[:last_prayer_id]
       random_prayer
