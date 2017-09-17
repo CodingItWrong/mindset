@@ -19,6 +19,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     editing_prayer_and_cancelling_redisplays_same_prayer(updated_prayer2)
     next_displays(prayer1)
     deleting_prayer_displays(updated_prayer2)
+    answering_prayer_hides_it(updated_prayer2)
   end
 
   private
@@ -81,5 +82,16 @@ RSpec.feature 'viewing prayers', type: :feature do
 
     expect(page).to have_content('Prayer deleted')
     expect(page).to have_content(prayer)
+  end
+
+  def answering_prayer_hides_it(prayer)
+    expect(page).to have_content(prayer)
+
+    click_on 'Answer'
+    fill_in :answer_text, with: 'It happened!'
+    click_on 'Mark Answered'
+
+    expect(page).to have_content('Prayer answer recorded')
+    expect(page).not_to have_content(prayer)
   end
 end

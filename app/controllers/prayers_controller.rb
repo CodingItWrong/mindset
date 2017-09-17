@@ -6,7 +6,7 @@ class PrayersController < ApplicationController
   end
 
   def show
-    if current_user.prayers.empty?
+    if current_user.unanswered_prayers.empty?
       redirect_to new_prayer_path
       return
     end
@@ -55,11 +55,11 @@ class PrayersController < ApplicationController
 
   def prayer_to_show
     if (prayer_id = params[:id] || flash[:next_prayer_id])
-      current_user.prayers.find(prayer_id)
+      current_user.unanswered_prayers.find(prayer_id)
     elsif flash[:last_prayer_id]
       random_prayer
     else
-      current_user.prayers.sample
+      current_user.unanswered_prayers.sample
     end
   end
 
@@ -67,13 +67,13 @@ class PrayersController < ApplicationController
     if other_prayers.any?
       other_prayers.sample
     else
-      current_user.prayers.sample
+      current_user.unanswered_prayers.sample
     end
   end
 
   def other_prayers
     last_id = flash[:last_prayer_id]
-    @other_prayers ||= current_user.prayers.where('id <> ?', last_id)
+    @other_prayers ||= current_user.unanswered_prayers.where('id <> ?', last_id)
   end
 
   def prayer_params

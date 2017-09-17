@@ -7,4 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :prayers
+
+  def unanswered_prayers
+    Prayer.unanswered { prayers }
+  end
 end
