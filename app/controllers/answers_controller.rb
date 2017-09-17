@@ -7,8 +7,8 @@ class AnswersController < ApplicationController
   end
 
   def create
-    prayer = current_user.prayers.find(params[:prayer_id])
-    @answer = Answer.new(prayer, answer_params)
+    @prayer = current_user.prayers.find(params[:prayer_id])
+    @answer = Answer.new(@prayer, answer_params)
     if @answer.save
       redirect_to root_path, notice: 'Prayer answer recorded.'
     else
