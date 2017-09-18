@@ -1,12 +1,10 @@
 <%= render 'detail' do %>
   <div class="pull-right">
     <% if @prayer.unanswered? %>
-      <%= link_to 'Answer', new_prayer_answer_path(@prayer) %>
-      |
+      <%= link_to 'Answer', new_prayer_answer_path(@prayer), class: 'btn btn-default' %>
     <% end %>
-    <%= link_to 'Edit', edit_prayer_path(@prayer) %>
-    |
-    <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Edit', edit_prayer_path(@prayer), class: 'btn btn-default' %>
+    <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
   </div>
 <% end %>
 <div class="row">
