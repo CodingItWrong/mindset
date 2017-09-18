@@ -43,7 +43,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def creating_additional_prayer_displays_that_prayer(prayer)
-    click_on 'Add Prayer'
+    click_on_first_link 'Add Prayer'
 
     fill_in :prayer_text, with: prayer
     click_on 'Save Prayer'
@@ -60,7 +60,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def editing_prayer_redisplays_same_prayer(prayer)
-    click_on 'Edit'
+    click_on_first_link 'Edit'
     fill_in :prayer_text, with: prayer
     click_on 'Save Prayer'
 
@@ -69,7 +69,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def editing_prayer_and_cancelling_redisplays_same_prayer(prayer)
-    click_on 'Edit'
+    click_on_first_link 'Edit'
     click_on 'Cancel'
 
     expect(page).to have_content(prayer)
@@ -81,7 +81,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def deleting_prayer_displays(prayer)
-    click_on 'Delete'
+    click_on_first_link 'Delete'
 
     expect(page).to have_content('Prayer deleted')
     expect(page).to have_content(prayer)
@@ -90,7 +90,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   def answering_prayer_hides_it(prayer, answer)
     expect(page).to have_content(prayer)
 
-    click_on 'Answer'
+    click_on_first_link 'Answer'
     expect(page).to have_content(prayer)
 
     click_on 'Mark Answered'
@@ -115,5 +115,11 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on prayer
     expect(page).to have_content(prayer)
     expect(page).to have_content(answer)
+  end
+
+  private
+
+  def click_on_first_link(text)
+    page.first(:link, text: /^#{Regexp.quote(text)}$/).click
   end
 end

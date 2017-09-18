@@ -1,10 +1,22 @@
 <%= render 'detail' do %>
   <div class="pull-right">
-    <% if @prayer.unanswered? %>
-      <%= link_to 'Answer', new_prayer_answer_path(@prayer), class: 'btn btn-default' %>
-    <% end %>
-    <%= link_to 'Edit', edit_prayer_path(@prayer), class: 'btn btn-default' %>
-    <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default' %>
+    <div class="dropdown visible-xs-block visible-sm-block">
+      <button class="btn btn-default" type="button" id="prayerActionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="prayerActionMenu">
+        <% if @prayer.unanswered? %>
+          <li><%= link_to 'Answer', new_prayer_answer_path(@prayer) %></li>
+        <% end %>
+        <li><%= link_to 'Edit', edit_prayer_path(@prayer) %></li>
+        <li><%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+      </ul>
+    </div>
+    <div class="hidden-xs hidden-sm">
+      <% if @prayer.unanswered? %>
+        <%= link_to 'Answer', new_prayer_answer_path(@prayer), class: 'btn btn-default btn-sm' %>
+      <% end %>
+      <%= link_to 'Edit', edit_prayer_path(@prayer), class: 'btn btn-default btn-sm' %>
+      <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-sm' %>
+    </div>
   </div>
 <% end %>
 <div class="row">
