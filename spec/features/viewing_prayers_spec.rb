@@ -10,6 +10,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     prayer1 = 'Custom prayer'
     prayer2 = 'Another prayer'
     updated_prayer2 = 'Enhanced prayer'
+    answer = 'It happened!'
 
     creating_first_prayer_displays_that_prayer(prayer1)
     next_when_only_one_prayer_redisplays(prayer1)
@@ -19,9 +20,9 @@ RSpec.feature 'viewing prayers', type: :feature do
     editing_prayer_and_cancelling_redisplays_same_prayer(updated_prayer2)
     next_displays(prayer1)
     deleting_prayer_displays(updated_prayer2)
-    answering_prayer_hides_it(updated_prayer2)
+    answering_prayer_hides_it(updated_prayer2, answer)
     answered_prayer_not_shown_in_unanswered_list(updated_prayer2)
-    answered_prayer_shown_in_answered_list(updated_prayer2)
+    answered_prayer_shown_in_answered_list(updated_prayer2, answer)
   end
 
   private
@@ -86,7 +87,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     expect(page).to have_content(prayer)
   end
 
-  def answering_prayer_hides_it(prayer)
+  def answering_prayer_hides_it(prayer, answer)
     expect(page).to have_content(prayer)
 
     click_on 'Answer'
@@ -95,7 +96,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Mark Answered'
     expect(page).to have_content("can't be blank")
 
-    fill_in :answer_text, with: 'It happened!'
+    fill_in :answer_text, with: answer
     click_on 'Mark Answered'
 
     expect(page).to have_content('Prayer answer recorded')
@@ -107,11 +108,12 @@ RSpec.feature 'viewing prayers', type: :feature do
     expect(page).not_to have_content(prayer)
   end
 
-  def answered_prayer_shown_in_answered_list(prayer)
+  def answered_prayer_shown_in_answered_list(prayer, answer)
     click_on 'Answered'
     expect(page).to have_content(prayer)
 
     click_on prayer
     expect(page).to have_content(prayer)
+    expect(page).to have_content(answer)
   end
 end

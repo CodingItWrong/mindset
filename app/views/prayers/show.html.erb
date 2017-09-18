@@ -1,7 +1,9 @@
 <%= render 'detail' do %>
   <div class="pull-right">
-    <%= link_to 'Answer', new_prayer_answer_path(@prayer) %>
-    |
+    <% if @prayer.unanswered? %>
+      <%= link_to 'Answer', new_prayer_answer_path(@prayer) %>
+      |
+    <% end %>
     <%= link_to 'Edit', edit_prayer_path(@prayer) %>
     |
     <%= link_to 'Delete', @prayer, method: :delete, data: { confirm: 'Are you sure?' } %>

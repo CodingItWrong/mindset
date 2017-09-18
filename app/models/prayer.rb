@@ -7,4 +7,12 @@ class Prayer < ApplicationRecord
 
   scope :answered, -> { where.not(answer: nil) }
   scope :unanswered, -> { where(answer: nil) }
+
+  def unanswered?
+    !answered?
+  end
+
+  def answered?
+    answer.present?
+  end
 end
