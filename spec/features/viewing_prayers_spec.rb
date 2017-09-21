@@ -28,13 +28,19 @@ RSpec.feature 'viewing prayers', type: :feature do
   private
 
   def creating_first_prayer_displays_that_prayer(prayer)
+    tags = %w(foo bar)
+
     visit '/'
 
     fill_in :prayer_text, with: prayer
+    fill_in :prayer_tag_list, with: tags.join(' ')
     click_on 'Save Prayer'
 
     expect(page).to have_content('Prayer created')
     expect(page).to have_content(prayer)
+    tags.each do |tag|
+      expect(page).to have_content(tag)
+    end
   end
 
   def next_when_only_one_prayer_redisplays(prayer)

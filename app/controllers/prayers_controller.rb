@@ -63,6 +63,6 @@ class PrayersController < ApplicationController
   end
 
   def prayer_params
-    params.require(:prayer).permit(:text)
+    params.require(:prayer).permit(:text, :tag_list)
   end
 end
