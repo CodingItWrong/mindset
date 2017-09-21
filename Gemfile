@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 gem 'dotenv-rails'
+gem 'acts-as-taggable-on', '~> 5.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
