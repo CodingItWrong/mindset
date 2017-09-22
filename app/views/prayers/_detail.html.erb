@@ -2,7 +2,7 @@
   <div class="panel-body">
     <p class="lead"><%= prayer_html(@prayer).html_safe %></p>
     <% @prayer.tags.each do |tag| %>
-      <span class="label label-primary"><%= tag %></span>
+      <%= link_to tag, tag_path(tag.id), class: 'btn btn-primary btn-xs' %></span>
     <% end %>
     <% if @prayer.answered? %>
       <p class="lead"><%= @prayer.answer %></p>

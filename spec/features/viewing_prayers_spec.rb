@@ -69,6 +69,9 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Tags'
     click_on 'foo'
     expect(page).to have_content(prayer)
+    click_on(prayer)
+    click_on 'foo'
+    expect(page).to have_content(prayer)
   end
 
   def editing_prayer_redisplays_same_prayer(prayer, updated_prayer)
