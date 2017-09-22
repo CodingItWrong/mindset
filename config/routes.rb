@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resource :answer, only: [:new, :create]
   end
+  resources :tags, only: [:index, :show]
   authenticated do
     root to: 'prayers#show'
   end

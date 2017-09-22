@@ -16,6 +16,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     next_when_only_one_prayer_redisplays(prayer1)
     creating_additional_prayer_displays_that_prayer(prayer2)
     list_displays([prayer1, prayer2])
+    tag_list_displays(prayer1)
     editing_prayer_redisplays_same_prayer(prayer2, updated_prayer2)
     editing_prayer_and_cancelling_redisplays_same_prayer(updated_prayer2)
     next_displays(prayer1)
@@ -64,7 +65,14 @@ RSpec.feature 'viewing prayers', type: :feature do
     end
   end
 
+  def tag_list_displays(prayer)
+    click_on 'Tags'
+    click_on 'foo'
+    expect(page).to have_content(prayer)
+  end
+
   def editing_prayer_redisplays_same_prayer(prayer, updated_prayer)
+    click_on 'Unanswered'
     click_on prayer
     click_on_first_link 'Edit'
     fill_in :prayer_text, with: updated_prayer
