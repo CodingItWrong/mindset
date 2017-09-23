@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   def tags
     tags_for_user = <<-QUERY
-      SELECT t1.*
+      SELECT DISTINCT t1.*
       FROM tags AS t1
       INNER JOIN taggings t2
         ON t1.id = t2.tag_id
