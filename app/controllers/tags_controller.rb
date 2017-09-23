@@ -2,7 +2,7 @@
 
 class TagsController < ApplicationController
   def index
-    @tags = ActsAsTaggableOn::Tag.all.order(:name)
+    @tags = current_user.tags
   end
 
   def show
