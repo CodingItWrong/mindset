@@ -16,17 +16,18 @@ class User < ApplicationRecord
     Prayer.unanswered { prayers }
   end
 
+  TAGS_FOR_USER_QUERY = <<-QUERY
+    SELECT DISTINCT t1.*
+    FROM tags AS t1
+    INNER JOIN taggings t2
+      ON t1.id = t2.tag_id
+    INNER JOIN prayers p
+      ON t2.taggable_type = 'Prayer' AND t2.taggable_id = p.id
+    WHERE p.user_id = ?
+    ORDER BY t1.name
+  QUERY
+
   def tags
-    tags_for_user = <<-QUERY
-      SELECT DISTINCT t1.*
-      FROM tags AS t1
-      INNER JOIN taggings t2
-        ON t1.id = t2.tag_id
-      INNER JOIN prayers p
-        ON t2.taggable_type = 'Prayer' AND t2.taggable_id = p.id
-      WHERE p.user_id = ?
-      ORDER BY t1.name
-    QUERY
-    ActsAsTaggableOn::Tag.find_by_sql([tags_for_user, id])
+    ActsAsTaggableOn::Tag.find_by_sql([TAGS_FOR_USER_QUERY, id])
   end
 end
