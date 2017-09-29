@@ -9,14 +9,16 @@ RSpec.feature 'viewing prayers', type: :feature do
 
     prayer1 = 'Custom prayer'
     prayer2 = 'Another prayer'
+    tags = %w[foo bar]
+    tag = tags.first
     updated_prayer2 = 'Enhanced prayer'
     answer = 'It happened!'
 
-    creating_first_prayer_displays_that_prayer(prayer1)
+    creating_first_prayer_displays_that_prayer(prayer1, tags)
     next_when_only_one_prayer_redisplays(prayer1)
     creating_additional_prayer_displays_that_prayer(prayer2)
     list_displays([prayer1, prayer2])
-    tag_list_displays(prayer1)
+    tag_list_displays(tag, prayer1)
     editing_prayer_redisplays_same_prayer(prayer2, updated_prayer2)
     editing_prayer_and_cancelling_redisplays_same_prayer(updated_prayer2)
     next_displays(prayer1)
@@ -28,9 +30,7 @@ RSpec.feature 'viewing prayers', type: :feature do
 
   private
 
-  def creating_first_prayer_displays_that_prayer(prayer)
-    tags = %w(foo bar)
-
+  def creating_first_prayer_displays_that_prayer(prayer, tags)
     visit '/'
 
     fill_in :prayer_text, with: prayer
@@ -65,12 +65,12 @@ RSpec.feature 'viewing prayers', type: :feature do
     end
   end
 
-  def tag_list_displays(prayer)
+  def tag_list_displays(tag, prayer)
     click_on 'Tags'
-    click_on 'foo'
+    click_on tag
     expect(page).to have_content(prayer)
     click_on(prayer)
-    click_on 'foo'
+    click_on tag
     expect(page).to have_content(prayer)
   end
 
