@@ -1,2 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+@media (min-width: $screen-sm-min) {
+  .prayer-panel {
+    margin-top: 50px;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .prayer-panel {
+    margin-top: 100px;
+  }
+}
