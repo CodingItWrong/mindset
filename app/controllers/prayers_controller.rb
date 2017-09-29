@@ -15,7 +15,7 @@ class PrayersController < ApplicationController
   end
 
   def new
-    @prayer = current_user.prayers.build
+    @prayer = current_user.prayers.build(new_prayer_params)
   end
 
   def create
@@ -60,6 +60,15 @@ class PrayersController < ApplicationController
   def other_prayers
     last_id = flash[:last_prayer_id]
     @other_prayers ||= current_user.unanswered_prayers.where('id <> ?', last_id)
+  end
+
+  def new_prayer_params
+    {}.tap do |new_prayer_params|
+      if params[:tag].present?
+        name = ActsAsTaggableOn::Tag.find(params[:tag]).name
+        new_prayer_params[:tag_list] = name
+      end
+    end
   end
 
   def prayer_params
