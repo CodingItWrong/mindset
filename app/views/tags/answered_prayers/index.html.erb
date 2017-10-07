@@ -1,8 +1,12 @@
 <h2><%= @tag %>: Answered Prayers</h2>
 
-<div class="btn-group">
-  <%= link_to 'Unanswered', tag_unanswered_prayers_path(@tag), class: "btn btn-default" %>
-  <%= link_to 'Answered', '#', class: "btn btn-default disabled" %>
+<div class="form-group">
+  <div class="btn-group">
+    <%= link_to 'Unanswered', tag_unanswered_prayers_path(@tag), class: "btn btn-default" %>
+    <%= link_to 'Answered', '#', class: "btn btn-default disabled" %>
+  </div>
 </div>
 
-<%= render partial: 'prayers/list', locals: {page: :unanswered} %>
+<div class="form-group">
+  <%= render partial: 'prayers/list', locals: {page: :unanswered} %>
+</div>
