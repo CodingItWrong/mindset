@@ -1,8 +1,3 @@
-<div class="btn-group">
-  <%= link_to 'Unanswered', unanswered_prayers_path, class: "btn btn-default #{'disabled' if page == :unanswered}" %>
-  <%= link_to 'Answered', answered_prayers_path, class: "btn btn-default #{'disabled' if page == :answered}" %>
-</div>
-
 <ul class="list-group">
   <% @prayers.each do |prayer| %>
     <li class="list-group-item"><%= link_to prayer.text, prayer %></li>

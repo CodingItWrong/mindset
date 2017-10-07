@@ -1,3 +1,8 @@
 <h2>Unanswered Prayers</h2>
 
+<div class="btn-group">
+  <%= link_to 'Unanswered', '#', class: "btn btn-default disabled" %>
+  <%= link_to 'Answered', answered_prayers_path, class: "btn btn-default" %>
+</div>
+
 <%= render partial: 'prayers/list', locals: {page: :unanswered} %>
