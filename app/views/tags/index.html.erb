@@ -2,6 +2,6 @@
 
 <ul class="list-group">
   <% @tags.each do |tag| %>
-    <li class="list-group-item"><%= link_to tag, tag_path(tag.id) %></li>
+    <li class="list-group-item"><%= link_to tag, tag_unanswered_prayers_path(tag.id) %></li>
   <% end %>
 </ul>

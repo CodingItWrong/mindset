@@ -9,7 +9,11 @@ Rails.application.routes.draw do
     end
     resource :answer, only: [:new, :create]
   end
-  resources :tags, only: [:index, :show]
+  resources :tags, only: :index do
+    scope module: 'tags' do
+      resources :unanswered_prayers, only: :index
+    end
+  end
   authenticated do
     root to: 'prayers#show'
   end
