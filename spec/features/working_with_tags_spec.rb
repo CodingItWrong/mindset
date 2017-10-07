@@ -11,11 +11,13 @@ RSpec.feature 'working with tags', type: :feature do
     prayer2 = 'Another prayer'
     tags = %w[foo bar]
     tag = tags.first
+    answer = 'It happened!'
 
     creating_prayer_with_tags_displays_those_tags(prayer1, tags)
     creating_additional_prayer_displays_that_prayer(prayer2)
     tag_list_displays(tag, prayer1)
     creating_prayer_from_tag_list_prepopulates_tag(tag)
+    answering_prayer_hides_it_from_tag_list(tag, prayer1, answer)
   end
 
   private
@@ -58,6 +60,25 @@ RSpec.feature 'working with tags', type: :feature do
     click_on_first_link 'Add Prayer'
 
     expect(page).to have_field(:prayer_tag_list, with: tag)
+  end
+
+  def answering_prayer_hides_it_from_tag_list(tag, prayer, answer)
+    click_on 'Tags'
+    click_on tag
+    expect(page).to have_content(prayer)
+
+    click_on prayer
+    click_on_first_link 'Answer'
+    expect(page).to have_content(prayer)
+
+    click_on 'Mark Answered'
+    expect(page).to have_content("can't be blank")
+
+    fill_in :answer_text, with: answer
+    click_on 'Mark Answered'
+
+    expect(page).to have_content('Prayer answer recorded')
+    expect(page).not_to have_content(prayer)
   end
 
   private
