@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :tags, only: :index do
     scope module: 'tags' do
       resources :unanswered_prayers, only: :index
+      resources :answered_prayers, only: :index
     end
   end
   authenticated do

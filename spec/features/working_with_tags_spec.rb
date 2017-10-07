@@ -18,6 +18,7 @@ RSpec.feature 'working with tags', type: :feature do
     tag_list_displays(tag, prayer1)
     creating_prayer_from_tag_list_prepopulates_tag(tag)
     answering_prayer_hides_it_from_tag_list(tag, prayer1, answer)
+    answered_prayer_shown_in_answered_list(tag, prayer1, answer)
   end
 
   private
@@ -79,6 +80,20 @@ RSpec.feature 'working with tags', type: :feature do
 
     expect(page).to have_content('Prayer answer recorded')
     expect(page).not_to have_content(prayer)
+
+    click_on 'Tags'
+    click_on tag
+    expect(page).not_to have_content(prayer)
+  end
+
+  def answered_prayer_shown_in_answered_list(tag, prayer, answer)
+    click_on 'Answered'
+    expect(page).to have_content(tag)
+    expect(page).to have_content(prayer)
+
+    click_on prayer
+    expect(page).to have_content(prayer)
+    expect(page).to have_content(answer)
   end
 
   private
