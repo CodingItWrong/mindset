@@ -60,6 +60,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def list_displays(prayers)
+    click_on 'Prayers'
     click_on 'Unanswered'
     aggregate_failures do
       prayers.each { |prayer| expect(page).to have_content(prayer) }
@@ -84,6 +85,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def editing_prayer_redisplays_same_prayer(prayer, updated_prayer)
+    click_on 'Prayers'
     click_on 'Unanswered'
     click_on prayer
     click_on_first_link 'Edit'
@@ -130,6 +132,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   end
 
   def answered_prayer_not_shown_in_unanswered_list(prayer)
+    click_on 'Prayers'
     click_on 'Unanswered'
     expect(page).not_to have_content(prayer)
   end
