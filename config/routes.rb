@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api do
-    resources :prayers, only: :index
+    resources :prayers, only: %i[index create update destroy]
   end
 
   authenticated do
