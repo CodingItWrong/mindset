@@ -16,6 +16,11 @@ Rails.application.routes.draw do
       resources :answered_prayers, only: :index
     end
   end
+
+  namespace :api do
+    resources :prayers, only: :index
+  end
+
   authenticated do
     root to: 'prayers#show'
   end
