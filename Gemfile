@@ -13,6 +13,7 @@ gem 'devise'
 gem 'doorkeeper'
 gem 'dotenv-rails'
 gem 'acts-as-taggable-on', '~> 5.0'
+gem 'rack-cors', :require => 'rack/cors'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
