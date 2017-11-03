@@ -14,6 +14,7 @@ gem 'doorkeeper'
 gem 'dotenv-rails'
 gem 'acts-as-taggable-on', '~> 5.0'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
