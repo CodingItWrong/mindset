@@ -42,9 +42,12 @@ module Api
     end
 
     def prayer_params
-      params.require(:prayer)
-            .permit(:text, :answer)
-            .merge(tag_list: params[:prayer][:tags])
+      prayer_params = params.require(:prayer)
+                            .permit(:text, :answer)
+      if (tags = params[:prayer][:tags])
+        prayer_params = prayer_params.merge(tag_list: tags)
+      end
+      prayer_params
     end
   end
 end
