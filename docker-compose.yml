@@ -10,5 +10,3 @@ services:
       - db
     depends_on:
       - db
-    environment:
-      - SECRET_KEY_BASE=${RAILS_SECRET_KEY_BASE}
