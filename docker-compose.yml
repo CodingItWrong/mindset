@@ -4,6 +4,8 @@ services:
     image: postgres
   web:
     build: .
+    volumes:
+      - .:/myapp
     ports:
       - "3002:3000"
     links:
