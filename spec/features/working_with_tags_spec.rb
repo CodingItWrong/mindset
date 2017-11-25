@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.feature 'working with tags', type: :feature do
   it 'displays all prayers for the user' do
-    user = FactoryGirl.create(:user)
+    user = FactoryBot.create(:user)
     sign_in user
 
     prayer1 = 'Custom prayer'

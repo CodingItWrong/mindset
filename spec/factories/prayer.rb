@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :prayer do
     user
     sequence(:text) { |n| "This is prayer #{n}" }
