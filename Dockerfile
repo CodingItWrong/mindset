@@ -15,6 +15,8 @@ ENV RAILS_ENV=production
 ENV RAILS_LOG_TO_STDOUT=true
 ENV RAILS_SERVE_STATIC_FILES=true
 
+LABEL foo=bar
+
 EXPOSE 3000
 
 CMD bin/docker-start
