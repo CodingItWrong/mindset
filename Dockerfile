@@ -4,6 +4,8 @@ RUN apt-get update && \
     apt-get install -y nodejs
 RUN gem install nokogiri -v 1.8.1
 
+LABEL foo=bar
+
 RUN mkdir /myapp
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
@@ -14,8 +16,6 @@ COPY . /myapp
 ENV RAILS_ENV=production
 ENV RAILS_LOG_TO_STDOUT=true
 ENV RAILS_SERVE_STATIC_FILES=true
-
-LABEL foo=bar
 
 EXPOSE 3000
 
