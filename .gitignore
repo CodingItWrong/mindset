@@ -20,5 +20,4 @@ playbook.retry
 .env
 .idea
 
-public/assets
-postgres-data
+certbot
