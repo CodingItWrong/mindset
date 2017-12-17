@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171102191933) do
+ActiveRecord::Schema.define(version: 20171217162041) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,15 +53,6 @@ ActiveRecord::Schema.define(version: 20171102191933) do
     t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true
   end
 
-  create_table "prayers", force: :cascade do |t|
-    t.text "text"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "answer"
-    t.index ["user_id"], name: "index_prayers_on_user_id"
-  end
-
   create_table "taggings", id: :serial, force: :cascade do |t|
     t.integer "tag_id"
     t.string "taggable_type"
@@ -87,6 +78,15 @@ ActiveRecord::Schema.define(version: 20171102191933) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "thoughts", force: :cascade do |t|
+    t.text "text"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "answer"
+    t.index ["user_id"], name: "index_thoughts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -106,5 +106,5 @@ ActiveRecord::Schema.define(version: 20171102191933) do
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
-  add_foreign_key "prayers", "users"
+  add_foreign_key "thoughts", "users"
 end

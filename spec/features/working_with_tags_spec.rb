@@ -26,8 +26,8 @@ RSpec.feature 'working with tags', type: :feature do
   def creating_prayer_with_tags_displays_those_tags(prayer, tags)
     visit '/'
 
-    fill_in :prayer_text, with: prayer
-    fill_in :prayer_tag_list, with: tags.join(' ')
+    fill_in :thought_text, with: prayer
+    fill_in :thought_tag_list, with: tags.join(' ')
     click_on 'Save Thought'
 
     expect(page).to have_content('Thought created')
@@ -40,7 +40,7 @@ RSpec.feature 'working with tags', type: :feature do
   def creating_additional_prayer_displays_that_prayer(prayer)
     click_on_first_link 'Add Thought'
 
-    fill_in :prayer_text, with: prayer
+    fill_in :thought_text, with: prayer
     click_on 'Save Thought'
 
     expect(page).to have_content(prayer)
@@ -60,7 +60,7 @@ RSpec.feature 'working with tags', type: :feature do
     click_on tag
     click_on_first_link 'Add Thought'
 
-    expect(page).to have_field(:prayer_tag_list, with: tag)
+    expect(page).to have_field(:thought_tag_list, with: tag)
   end
 
   def answering_prayer_hides_it_from_tag_list(tag, prayer, answer)

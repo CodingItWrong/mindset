@@ -30,7 +30,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   def creating_first_prayer_displays_that_prayer(prayer)
     visit '/'
 
-    fill_in :prayer_text, with: prayer
+    fill_in :thought_text, with: prayer
     click_on 'Save Thought'
 
     expect(page).to have_content('Thought created')
@@ -45,7 +45,7 @@ RSpec.feature 'viewing prayers', type: :feature do
   def creating_additional_prayer_displays_that_prayer(prayer)
     click_on_first_link 'Add Thought'
 
-    fill_in :prayer_text, with: prayer
+    fill_in :thought_text, with: prayer
     click_on 'Save Thought'
 
     expect(page).to have_content(prayer)
@@ -64,7 +64,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Unresolved'
     click_on prayer
     click_on_first_link 'Edit'
-    fill_in :prayer_text, with: updated_prayer
+    fill_in :thought_text, with: updated_prayer
     click_on 'Save Thought'
 
     expect(page).to have_content('Thought updated')

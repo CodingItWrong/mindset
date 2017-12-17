@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Prayer < ApplicationRecord
+class Thought < ApplicationRecord
   belongs_to :user
   acts_as_taggable
 

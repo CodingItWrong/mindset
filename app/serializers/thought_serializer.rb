@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class PrayerSerializer < ActiveModel::Serializer
+class ThoughtSerializer < ActiveModel::Serializer
   attributes %i[id text answer]
 
   has_many :tags do

@@ -3,7 +3,7 @@
 class ThoughtsController < ApplicationController
   def show
     if (prayer_id = params[:id])
-      @prayer = current_user.prayers.find(prayer_id)
+      @prayer = current_user.thoughts.find(prayer_id)
     else
       if current_user.unanswered_prayers.empty?
         redirect_to new_thought_path
@@ -15,11 +15,11 @@ class ThoughtsController < ApplicationController
   end
 
   def new
-    @prayer = current_user.prayers.build(new_prayer_params)
+    @prayer = current_user.thoughts.build(new_prayer_params)
   end
 
   def create
-    @prayer = current_user.prayers.build(prayer_params)
+    @prayer = current_user.thoughts.build(prayer_params)
     if @prayer.save
       redirect_to thought_path(@prayer), notice: 'Thought created.'
     else
@@ -29,11 +29,11 @@ class ThoughtsController < ApplicationController
 
   def edit
     prayer_id = params[:id]
-    @prayer = current_user.prayers.find(prayer_id)
+    @prayer = current_user.thoughts.find(prayer_id)
   end
 
   def update
-    @prayer = current_user.prayers.find(params[:id])
+    @prayer = current_user.thoughts.find(params[:id])
     if @prayer.update(prayer_params)
       redirect_to thought_path(@prayer), notice: 'Thought updated.'
     else
@@ -42,7 +42,7 @@ class ThoughtsController < ApplicationController
   end
 
   def destroy
-    @prayer = current_user.prayers.find(params[:id])
+    @prayer = current_user.thoughts.find(params[:id])
     @prayer.destroy!
     redirect_to root_path, notice: 'Thought deleted.'
   end
@@ -72,6 +72,6 @@ class ThoughtsController < ApplicationController
   end
 
   def prayer_params
-    params.require(:prayer).permit(:text, :tag_list)
+    params.require(:thought).permit(:text, :tag_list)
   end
 end

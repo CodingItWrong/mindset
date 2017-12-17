@@ -6,14 +6,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :prayers
+  has_many :thoughts
 
   def answered_prayers
-    Prayer.answered { prayers }
+    Thought.answered { prayers }
   end
 
   def unanswered_prayers
-    Prayer.unanswered { prayers }
+    Thought.unanswered { prayers }
   end
 
   TAGS_FOR_USER_QUERY = <<-QUERY
@@ -21,9 +21,9 @@ class User < ApplicationRecord
     FROM tags AS t1
     INNER JOIN taggings t2
       ON t1.id = t2.tag_id
-    INNER JOIN prayers p
-      ON t2.taggable_type = 'Prayer' AND t2.taggable_id = p.id
-    WHERE p.user_id = ?
+    INNER JOIN thoughts th
+      ON t2.taggable_type = 'Thought' AND t2.taggable_id = th.id
+    WHERE th.user_id = ?
     ORDER BY t1.name
   QUERY
 
