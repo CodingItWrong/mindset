@@ -5,7 +5,7 @@ class ThoughtsController < ApplicationController
     if (prayer_id = params[:id])
       @prayer = current_user.thoughts.find(prayer_id)
     else
-      if current_user.unanswered_prayers.empty?
+      if current_user.unresolved_thoughts.empty?
         redirect_to new_thought_path
         return
       end
@@ -53,13 +53,13 @@ class ThoughtsController < ApplicationController
     if other_prayers.any?
       other_prayers.sample
     else
-      current_user.unanswered_prayers.sample
+      current_user.unresolved_thoughts.sample
     end
   end
 
   def other_prayers
     last_id = flash[:last_prayer_id]
-    @other_prayers ||= current_user.unanswered_prayers.where('id <> ?', last_id)
+    @other_prayers ||= current_user.unresolved_thoughts.where('id <> ?', last_id)
   end
 
   def new_prayer_params

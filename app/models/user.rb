@@ -8,12 +8,12 @@ class User < ApplicationRecord
 
   has_many :thoughts
 
-  def answered_prayers
-    Thought.answered { prayers }
+  def resolved_thoughts
+    Thought.resolved { thoughts }
   end
 
-  def unanswered_prayers
-    Thought.unanswered { prayers }
+  def unresolved_thoughts
+    Thought.unresolved { thoughts }
   end
 
   TAGS_FOR_USER_QUERY = <<-QUERY

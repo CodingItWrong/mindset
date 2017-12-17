@@ -6,8 +6,8 @@ class Thought < ApplicationRecord
 
   validates :text, presence: true
 
-  scope :answered, -> { where.not(answer: nil) }
-  scope :unanswered, -> { where(answer: nil) }
+  scope :resolved, -> { where.not(answer: nil) }
+  scope :unresolved, -> { where(answer: nil) }
 
   def unanswered?
     !answered?

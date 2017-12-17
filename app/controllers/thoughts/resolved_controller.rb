@@ -3,7 +3,7 @@
 module Thoughts
   class ResolvedController < ApplicationController
     def index
-      @prayers = current_user.answered_prayers.order(:text)
+      @prayers = current_user.resolved_thoughts.order(:text)
     end
   end
 end
