@@ -28,9 +28,9 @@ RSpec.feature 'working with tags', type: :feature do
 
     fill_in :prayer_text, with: prayer
     fill_in :prayer_tag_list, with: tags.join(' ')
-    click_on 'Save Prayer'
+    click_on 'Save Thought'
 
-    expect(page).to have_content('Prayer created')
+    expect(page).to have_content('Thought created')
     expect(page).to have_content(prayer)
     tags.each do |tag|
       expect(page).to have_content(tag)
@@ -38,10 +38,10 @@ RSpec.feature 'working with tags', type: :feature do
   end
 
   def creating_additional_prayer_displays_that_prayer(prayer)
-    click_on_first_link 'Add Prayer'
+    click_on_first_link 'Add Thought'
 
     fill_in :prayer_text, with: prayer
-    click_on 'Save Prayer'
+    click_on 'Save Thought'
 
     expect(page).to have_content(prayer)
   end
@@ -58,7 +58,7 @@ RSpec.feature 'working with tags', type: :feature do
   def creating_prayer_from_tag_list_prepopulates_tag(tag)
     click_on 'Tags'
     click_on tag
-    click_on_first_link 'Add Prayer'
+    click_on_first_link 'Add Thought'
 
     expect(page).to have_field(:prayer_tag_list, with: tag)
   end
@@ -69,16 +69,16 @@ RSpec.feature 'working with tags', type: :feature do
     expect(page).to have_content(prayer)
 
     click_on prayer
-    click_on_first_link 'Answer'
+    click_on_first_link 'Resolve'
     expect(page).to have_content(prayer)
 
-    click_on 'Mark Answered'
+    click_on 'Mark Resolved'
     expect(page).to have_content("can't be blank")
 
     fill_in :answer_text, with: answer
-    click_on 'Mark Answered'
+    click_on 'Mark Resolved'
 
-    expect(page).to have_content('Prayer answer recorded')
+    expect(page).to have_content('Thought resolution recorded')
     expect(page).not_to have_content(prayer)
 
     click_on 'Tags'
@@ -87,7 +87,7 @@ RSpec.feature 'working with tags', type: :feature do
   end
 
   def answered_prayer_shown_in_answered_list(tag, prayer, answer)
-    click_on 'Answered'
+    click_on 'Resolved'
     expect(page).to have_content(tag)
     expect(page).to have_content(prayer)
 

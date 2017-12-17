@@ -1,5 +1,5 @@
 <h2>Tags</h2>
 
 <% @tags.each do |tag| %>
-  <%= link_to tag, tag_unanswered_prayers_path(tag.id), class: 'btn btn-primary btn-lg' %>
+  <%= link_to tag, tag_unresolved_thoughts_path(tag.id), class: 'btn btn-primary btn-lg' %>
 <% end %>

@@ -1,8 +1,8 @@
-<div class="panel panel-default prayer-panel">
+<div class="panel panel-default thought-panel">
   <div class="panel-body">
     <p class="lead"><%= prayer_html(@prayer).html_safe %></p>
     <% @prayer.tags.each do |tag| %>
-      <%= link_to tag, tag_unanswered_prayers_path(tag.id), class: 'btn btn-primary btn-sm' %>
+      <%= link_to tag, tag_unresolved_thoughts_path(tag.id), class: 'btn btn-primary btn-sm' %>
     <% end %>
     <% if @prayer.answered? %>
       <p class="lead"><%= @prayer.answer %></p>

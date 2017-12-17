@@ -8,9 +8,9 @@
   </div>
 <% end %>
 
-<%= render 'prayers/detail' %>
+<%= render 'thoughts/detail' %>
 
-<%= form_for @answer, url: prayer_answer_path do |f| %>
+<%= form_for @answer, url: thought_resolution_path do |f| %>
   <div class="form-group">
     <%= f.text_area :text, placeholder: 'Answer', rows: 3, class: 'form-control input-lg' %>
   </div>
@@ -18,12 +18,12 @@
     <div class="hidden-xs hidden-sm col-md-4"></div>
     <div class="col-xs-12 col-sm-6 col-md-4">
       <div class="form-group">
-        <%= f.submit 'Mark Answered', class: 'btn btn-primary btn-lg btn-block' %>
+        <%= f.submit 'Mark Resolved', class: 'btn btn-primary btn-lg btn-block' %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-4">
       <div class="form-group">
-        <%= link_to 'Cancel', prayer_path(@prayer), class: 'btn btn-default btn-lg btn-block' %>
+        <%= link_to 'Cancel', thought_path(@prayer), class: 'btn btn-default btn-lg btn-block' %>
       </div>
     </div>
   </div>

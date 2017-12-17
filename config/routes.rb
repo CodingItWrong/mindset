@@ -1,28 +1,28 @@
 Rails.application.routes.draw do
   use_doorkeeper
   devise_for :users
-  resources :prayers, except: :index do
+  resources :thoughts, except: :index do
     collection do
-      scope module: 'prayers' do
-        resources :unanswered, only: [:index], as: 'unanswered_prayers'
-        resources :answered, only: [:index], as: 'answered_prayers'
+      scope module: 'thoughts' do
+        resources :unresolved, only: [:index], as: 'unresolved_thoughts'
+        resources :resolved, only: [:index], as: 'resolved_thoughts'
       end
     end
-    resource :answer, only: [:new, :create]
+    resource :resolution, only: [:new, :create]
   end
   resources :tags, only: :index do
     scope module: 'tags' do
-      resources :unanswered_prayers, only: :index
-      resources :answered_prayers, only: :index
+      resources :unresolved_thoughts, only: :index
+      resources :resolved_thoughts, only: :index
     end
   end
 
   namespace :api do
-    resources :prayers, only: %i[index create update destroy]
+    resources :thoughts, only: %i[index create update destroy]
   end
 
   authenticated do
-    root to: 'prayers#show'
+    root to: 'thoughts#show'
   end
   root to: redirect('/users/sign_in')
 end

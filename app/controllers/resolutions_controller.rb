@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-class AnswersController < ApplicationController
+class ResolutionsController < ApplicationController
   def new
-    @prayer = current_user.prayers.find(params[:prayer_id])
+    @prayer = current_user.prayers.find(params[:thought_id])
     @answer = Answer.new(@prayer)
   end
 
   def create
-    @prayer = current_user.prayers.find(params[:prayer_id])
+    @prayer = current_user.prayers.find(params[:thought_id])
     @answer = Answer.new(@prayer, answer_params)
     if @answer.save
-      redirect_to root_path, notice: 'Prayer answer recorded.'
+      redirect_to root_path, notice: 'Thought resolution recorded.'
     else
       render :new
     end

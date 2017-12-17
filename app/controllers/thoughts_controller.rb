@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-class PrayersController < ApplicationController
+class ThoughtsController < ApplicationController
   def show
     if (prayer_id = params[:id])
       @prayer = current_user.prayers.find(prayer_id)
     else
       if current_user.unanswered_prayers.empty?
-        redirect_to new_prayer_path
+        redirect_to new_thought_path
         return
       end
       @prayer = random_prayer
@@ -21,7 +21,7 @@ class PrayersController < ApplicationController
   def create
     @prayer = current_user.prayers.build(prayer_params)
     if @prayer.save
-      redirect_to @prayer, notice: 'Prayer created.'
+      redirect_to thought_path(@prayer), notice: 'Thought created.'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class PrayersController < ApplicationController
   def update
     @prayer = current_user.prayers.find(params[:id])
     if @prayer.update(prayer_params)
-      redirect_to @prayer, notice: 'Prayer updated.'
+      redirect_to thought_path(@prayer), notice: 'Thought updated.'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class PrayersController < ApplicationController
   def destroy
     @prayer = current_user.prayers.find(params[:id])
     @prayer.destroy!
-    redirect_to root_path, notice: 'Prayer deleted.'
+    redirect_to root_path, notice: 'Thought deleted.'
   end
 
   private

@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<%= form_for @prayer do |f| %>
+<%= form_for @prayer, url: (@prayer.id.present? ? thought_path(@prayer) : thoughts_path) do |f| %>
   <div class="form-group">
     <%= f.text_area :text, placeholder: 'Prayer', rows: 3, class: 'form-control input-lg' %>
   </div>
@@ -19,12 +19,12 @@
     <div class="hidden-xs hidden-sm col-md-6"></div>
     <div class="col-xs-12 col-sm-6 col-md-3">
       <div class="form-group">
-        <%= f.submit 'Save Prayer', class: 'btn btn-primary btn-lg btn-block' %>
+        <%= f.submit 'Save Thought', class: 'btn btn-primary btn-lg btn-block' %>
       </div>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-3">
       <div class="form-group">
-        <%= link_to 'Cancel', @prayer.new_record? ? root_path : @prayer, class: 'btn btn-default btn-lg btn-block' %>
+        <%= link_to 'Cancel', @prayer.new_record? ? root_path : thought_path(@prayer), class: 'btn btn-default btn-lg btn-block' %>
       </div>
     </div>
   </div>

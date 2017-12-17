@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Prayers
-  class AnsweredController < ApplicationController
+module Thoughts
+  class ResolvedController < ApplicationController
     def index
       @prayers = current_user.answered_prayers.order(:text)
     end

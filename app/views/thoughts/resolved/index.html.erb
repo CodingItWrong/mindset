@@ -1,0 +1,12 @@
+<h2>Resolved Thoughts</h2>
+
+<div class="form-group">
+  <div class="btn-group">
+    <%= link_to 'Unresolved', unresolved_thoughts_path, class: "btn btn-default" %>
+    <%= link_to 'Resolved', '#', class: "btn btn-default disabled" %>
+  </div>
+</div>
+
+<div class="form-group">
+  <%= render partial: 'thoughts/list', locals: {page: :answered} %>
+</div>
