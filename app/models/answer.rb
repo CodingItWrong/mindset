@@ -3,16 +3,16 @@
 class Answer
   include ActiveModel::Model
 
-  attr_accessor :prayer, :text
+  attr_accessor :thought, :text
 
-  validates :prayer, :text, presence: true
+  validates :thought, :text, presence: true
 
-  def initialize(prayer, params = nil)
-    self.prayer = prayer
+  def initialize(thought, params = nil)
+    self.thought = thought
     self.text = params[:text] if params.present?
   end
 
   def save
-    @prayer.update(answer: text) if valid?
+    thought.update(answer: text) if valid?
   end
 end
