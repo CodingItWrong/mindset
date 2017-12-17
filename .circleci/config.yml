@@ -10,12 +10,12 @@ jobs:
        - image: circleci/ruby:2.4.2-node-browsers
          environment:
            PGHOST: 127.0.0.1
-           PGUSER: prayer_app
+           PGUSER: mindset
            RAILS_ENV: test
        - image: circleci/postgres:9.6-alpine
          environment:
-           POSTGRES_USER: prayer_app
-           POSTGRES_DB: prayer_app_test
+           POSTGRES_USER: mindset
+           POSTGRES_DB: mindset_test
            POSTGRES_PASSWORD: ""
 
     working_directory: ~/repo

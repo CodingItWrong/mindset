@@ -1,6 +1,6 @@
-# Prayer App
+# Mindset
 
-This is a short description of your app.
+An app for setting your mind on the things that matter most to you.
 
 ## Getting Started
 
