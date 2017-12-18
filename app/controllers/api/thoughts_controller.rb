@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module Api
-  class PrayersController < ApiController
+  class ThoughtsController < ApiController
     def index
-      render json: current_user.prayers
+      render json: current_user.thoughts
     end
 
     def create
-      prayer = current_user.prayers.build(prayer_params)
+      prayer = current_user.thoughts.build(prayer_params)
       if prayer.save
         render json: prayer, status: :created
       else
@@ -16,7 +16,7 @@ module Api
     end
 
     def update
-      prayer = current_user.prayers.find(params[:id])
+      prayer = current_user.thoughts.find(params[:id])
       if prayer.update(prayer_params)
         render json: prayer, status: :ok
       else
@@ -43,7 +43,7 @@ module Api
 
     def prayer_params
       prayer_params = params.require(:prayer)
-                            .permit(:text, :answer)
+                            .permit(:text, :resolution)
       if (tags = params[:prayer][:tags])
         prayer_params = prayer_params.merge(tag_list: tags)
       end
