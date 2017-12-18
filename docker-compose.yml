@@ -6,4 +6,4 @@ services:
     volumes:
       - ./certbot/.well-known:/myapp/public/.well-known
     ports:
-      - "3002:3000"
+      - "3004:3000"
