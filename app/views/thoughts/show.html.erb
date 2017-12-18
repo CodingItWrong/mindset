@@ -3,19 +3,19 @@
     <div class="dropdown visible-xs-block visible-sm-block">
       <button class="btn btn-default" type="button" id="prayerActionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="caret"></span></button>
       <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="prayerActionMenu">
-        <% if @prayer.unresolved? %>
-          <li><%= link_to 'Resolve', new_thought_resolution_path(@prayer) %></li>
+        <% if @thought.unresolved? %>
+          <li><%= link_to 'Resolve', new_thought_resolution_path(@thought) %></li>
         <% end %>
-        <li><%= link_to 'Edit', edit_thought_path(@prayer) %></li>
-        <li><%= link_to 'Delete', thought_path(@prayer), method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        <li><%= link_to 'Edit', edit_thought_path(@thought) %></li>
+        <li><%= link_to 'Delete', @thought, method: :delete, data: { confirm: 'Are you sure?' } %></li>
       </ul>
     </div>
     <div class="hidden-xs hidden-sm">
-      <% if @prayer.unresolved? %>
-        <%= link_to 'Resolve', new_thought_resolution_path(@prayer), class: 'btn btn-default btn-sm' %>
+      <% if @thought.unresolved? %>
+        <%= link_to 'Resolve', new_thought_resolution_path(@thought), class: 'btn btn-default btn-sm' %>
       <% end %>
-      <%= link_to 'Edit', edit_thought_path(@prayer), class: 'btn btn-default btn-sm' %>
-      <%= link_to 'Delete', thought_path(@prayer), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-sm' %>
+      <%= link_to 'Edit', edit_thought_path(@thought), class: 'btn btn-default btn-sm' %>
+      <%= link_to 'Delete', @thought, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-default btn-sm' %>
     </div>
   </div>
 <% end %>

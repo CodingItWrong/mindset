@@ -3,25 +3,25 @@
 class ThoughtsController < ApplicationController
   def show
     if (prayer_id = params[:id])
-      @prayer = current_user.thoughts.find(prayer_id)
+      @thought = current_user.thoughts.find(prayer_id)
     else
       if current_user.unresolved_thoughts.empty?
         redirect_to new_thought_path
         return
       end
-      @prayer = random_prayer
+      @thought = random_prayer
     end
-    flash[:last_prayer_id] = @prayer.id
+    flash[:last_prayer_id] = @thought.id
   end
 
   def new
-    @prayer = current_user.thoughts.build(new_prayer_params)
+    @thought = current_user.thoughts.build(new_prayer_params)
   end
 
   def create
-    @prayer = current_user.thoughts.build(prayer_params)
-    if @prayer.save
-      redirect_to thought_path(@prayer), notice: 'Thought created.'
+    @thought = current_user.thoughts.build(prayer_params)
+    if @thought.save
+      redirect_to @thought, notice: 'Thought created.'
     else
       render :new
     end
@@ -29,21 +29,21 @@ class ThoughtsController < ApplicationController
 
   def edit
     prayer_id = params[:id]
-    @prayer = current_user.thoughts.find(prayer_id)
+    @thought = current_user.thoughts.find(prayer_id)
   end
 
   def update
-    @prayer = current_user.thoughts.find(params[:id])
-    if @prayer.update(prayer_params)
-      redirect_to thought_path(@prayer), notice: 'Thought updated.'
+    @thought = current_user.thoughts.find(params[:id])
+    if @thought.update(prayer_params)
+      redirect_to @thought, notice: 'Thought updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    @prayer = current_user.thoughts.find(params[:id])
-    @prayer.destroy!
+    @thought = current_user.thoughts.find(params[:id])
+    @thought.destroy!
     redirect_to root_path, notice: 'Thought deleted.'
   end
 

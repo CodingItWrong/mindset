@@ -4,7 +4,7 @@ module Tags
   class ResolvedThoughtsController < ApplicationController
     def index
       @tag = ActsAsTaggableOn::Tag.find(params[:tag_id])
-      @prayers = current_user.resolved_thoughts
+      @thoughts = current_user.resolved_thoughts
                              .joins(:tags)
                              .where('tags.id' => @tag.id)
                              .order(:text)
