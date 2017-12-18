@@ -1,8 +1,8 @@
 <%= render 'detail' do %>
   <div class="pull-right">
     <div class="dropdown visible-xs-block visible-sm-block">
-      <button class="btn btn-default" type="button" id="prayerActionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="caret"></span></button>
-      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="prayerActionMenu">
+      <button class="btn btn-default" type="button" id="thoughtActionMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="caret"></span></button>
+      <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="thoughtActionMenu">
         <% if @thought.unresolved? %>
           <li><%= link_to 'Resolve', new_thought_resolution_path(@thought) %></li>
         <% end %>

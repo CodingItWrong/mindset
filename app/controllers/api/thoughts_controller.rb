@@ -7,47 +7,47 @@ module Api
     end
 
     def create
-      prayer = current_user.thoughts.build(prayer_params)
-      if prayer.save
-        render json: prayer, status: :created
+      thought = current_user.thoughts.build(thought_params)
+      if thought.save
+        render json: thought, status: :created
       else
-        render json: prayer.errors, status: :unprocessable_entity
+        render json: thought.errors, status: :unprocessable_entity
       end
     end
 
     def update
-      prayer = current_user.thoughts.find(params[:id])
-      if prayer.update(prayer_params)
-        render json: prayer, status: :ok
+      thought = current_user.thoughts.find(params[:id])
+      if thought.update(thought_params)
+        render json: thought, status: :ok
       else
-        render json: prayer.errors, status: :unprocessable_entity
+        render json: thought.errors, status: :unprocessable_entity
       end
     end
 
     def destroy
-      prayer = current_user.prayers.find(params[:id])
-      prayer.destroy!
+      thought = current_user.thoughts.find(params[:id])
+      thought.destroy!
       head :ok
     end
 
     private
 
-    def new_prayer_params
-      {}.tap do |new_prayer_params|
+    def new_thought_params
+      {}.tap do |new_thought_params|
         if params[:tag].present?
           name = ActsAsTaggableOn::Tag.find(params[:tag]).name
-          new_prayer_params[:tag_list] = name
+          new_thought_params[:tag_list] = name
         end
       end
     end
 
-    def prayer_params
-      prayer_params = params.require(:prayer)
-                            .permit(:text, :resolution)
-      if (tags = params[:prayer][:tags])
-        prayer_params = prayer_params.merge(tag_list: tags)
+    def thought_params
+      thought_params = params.require(:thought)
+                             .permit(:text, :resolution)
+      if (tags = params[:thought][:tags])
+        thought_params = thought_params.merge(tag_list: tags)
       end
-      prayer_params
+      thought_params
     end
   end
 end

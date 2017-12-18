@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <% @thoughts.each do |prayer| %>
-    <li class="list-group-item"><%= link_to prayer.text, thought_path(prayer) %></li>
+  <% @thoughts.each do |thought| %>
+    <li class="list-group-item"><%= link_to thought.text, thought_path(thought) %></li>
   <% end %>
 </ul>

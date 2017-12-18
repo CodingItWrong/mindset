@@ -1,6 +1,6 @@
 <div class="panel panel-default thought-panel">
   <div class="panel-body">
-    <p class="lead"><%= prayer_html(@thought).html_safe %></p>
+    <p class="lead"><%= thought_html(@thought).html_safe %></p>
     <% @thought.tags.each do |tag| %>
       <%= link_to tag, tag_unresolved_thoughts_path(tag.id), class: 'btn btn-primary btn-sm' %>
     <% end %>
