@@ -13,6 +13,6 @@ class Answer
   end
 
   def save
-    thought.update(answer: text) if valid?
+    thought.update(resolution: text) if valid?
   end
 end

@@ -4,8 +4,8 @@
     <% @prayer.tags.each do |tag| %>
       <%= link_to tag, tag_unresolved_thoughts_path(tag.id), class: 'btn btn-primary btn-sm' %>
     <% end %>
-    <% if @prayer.answered? %>
-      <p class="lead"><%= @prayer.answer %></p>
+    <% if @prayer.resolved? %>
+      <p class="lead"><%= @prayer.resolution %></p>
     <% end %>
     <%= yield %>
   </div>
