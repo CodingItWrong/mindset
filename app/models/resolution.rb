@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Answer
+class Resolution
   include ActiveModel::Model
 
   attr_accessor :thought, :text

@@ -3,12 +3,12 @@
 class ResolutionsController < ApplicationController
   def new
     @prayer = current_user.thoughts.find(params[:thought_id])
-    @answer = Answer.new(@prayer)
+    @answer = Resolution.new(@prayer)
   end
 
   def create
     @prayer = current_user.thoughts.find(params[:thought_id])
-    @answer = Answer.new(@prayer, answer_params)
+    @answer = Resolution.new(@prayer, answer_params)
     if @answer.save
       redirect_to root_path, notice: 'Thought resolution recorded.'
     else
@@ -19,6 +19,6 @@ class ResolutionsController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:text)
+    params.require(:resolution).permit(:text)
   end
 end

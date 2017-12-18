@@ -99,7 +99,7 @@ RSpec.feature 'viewing prayers', type: :feature do
     click_on 'Mark Resolved'
     expect(page).to have_content("can't be blank")
 
-    fill_in :answer_text, with: answer
+    fill_in :resolution_text, with: answer
     click_on 'Mark Resolved'
 
     expect(page).to have_content('Thought resolution recorded')
