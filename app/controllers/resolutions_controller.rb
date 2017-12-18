@@ -3,13 +3,13 @@
 class ResolutionsController < ApplicationController
   def new
     @thought = current_user.thoughts.find(params[:thought_id])
-    @answer = Resolution.new(@thought)
+    @resolution = Resolution.new(@thought)
   end
 
   def create
     @thought = current_user.thoughts.find(params[:thought_id])
-    @answer = Resolution.new(@thought, answer_params)
-    if @answer.save
+    @resolution = Resolution.new(@thought, answer_params)
+    if @resolution.save
       redirect_to root_path, notice: 'Thought resolution recorded.'
     else
       render :new

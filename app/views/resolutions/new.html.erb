@@ -1,7 +1,7 @@
-<% if @answer.errors.any? %>
+<% if @resolution.errors.any? %>
   <div class="alert alert-danger">
     <ul>
-      <% @answer.errors.full_messages.each do |msg| %>
+      <% @resolution.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
     </ul>
@@ -10,7 +10,7 @@
 
 <%= render 'thoughts/detail' %>
 
-<%= form_for @answer, url: thought_resolution_path do |f| %>
+<%= form_for @resolution, url: thought_resolution_path do |f| %>
   <div class="form-group">
     <%= f.text_area :text, placeholder: 'Answer', rows: 3, class: 'form-control input-lg' %>
   </div>
