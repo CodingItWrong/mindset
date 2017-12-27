@@ -8,7 +8,7 @@ class ResolutionsController < ApplicationController
 
   def create
     @thought = current_user.thoughts.find(params[:thought_id])
-    @resolution = Resolution.new(@thought, answer_params)
+    @resolution = Resolution.new(@thought, resolution_params)
     if @resolution.save
       redirect_to root_path, notice: 'Thought resolution recorded.'
     else
@@ -18,7 +18,7 @@ class ResolutionsController < ApplicationController
 
   private
 
-  def answer_params
+  def resolution_params
     params.require(:resolution).permit(:text)
   end
 end
