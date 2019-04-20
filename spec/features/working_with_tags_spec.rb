@@ -32,9 +32,7 @@ RSpec.feature 'working with tags', type: :feature do
 
     expect(page).to have_content('Thought created')
     expect(page).to have_content(thought)
-    tags.each do |tag|
-      expect(page).to have_content(tag)
-    end
+    tags.each { |tag| expect(page).to have_content(tag) }
   end
 
   def creating_additional_thought_displays_that_thought(thought)

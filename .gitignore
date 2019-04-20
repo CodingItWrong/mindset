@@ -21,3 +21,4 @@ playbook.retry
 .idea
 
 certbot
+node_modules
