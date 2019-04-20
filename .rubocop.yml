@@ -5,35 +5,65 @@ AllCops:
   # Don't check binstubs or gemfile
   Exclude:
     - 'bin/**/*'
+    - 'config/**/*'
     - 'config.ru'
-    - 'config/**/*.rb'
-    - 'db/**/*.rb'
+    - 'db/migrate/*'
+    - 'db/schema.rb'
+    - 'node_modules/**/*'
     - 'Gemfile'
     - 'Rakefile'
     - 'spec/*_helper.rb'
-    - 'spec/factories/*.rb'
+    - 'vendor/**/*'
 
-# Don't restrict length of modules/files
-Metrics/ModuleLength:
+Layout/EmptyLineAfterMagicComment:
   Enabled: false
 
-# Allow braces for blocks that mainly return a value, including RSpec lets and
-# subjects
+Layout/IndentArray:
+  Enabled: false
+
 Style/BlockDelimiters:
-  EnforcedStyle: semantic
+  Enabled: false
 
 # Don't require a class comment
 Style/Documentation:
   Enabled: false
 
-# Don't require thousand separators
-Style/NumericLiterals:
+Style/GuardClause:
   Enabled: false
 
-# Require trailing commas for multiline arrays/hashes
-Style/TrailingCommaInLiteral:
+# Require trailing commas for multiline arrays
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+# Require trailing commas for multiline hashes
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
+# Require trailing commas for multiline argument lists
+Style/TrailingCommaInArguments:
   EnforcedStyleForMultiline: comma
 
 # Allow but do not require modifier usage of if/unless
 Style/IfUnlessModifier:
+  Enabled: false
+
+# Default Rails files have comment lines this long
+Metrics/LineLength:
+  Enabled: false
+
+# Allow *%i[…]
+Lint/UnneededSplatExpansion:
+  Enabled: false
+Lint/AmbiguousOperator:
+  Enabled: false
+
+# The examples I see always use stabby lambdas
+Style/Lambda:
+  Enabled: false
+
+# casecmp().zero? is less readable, so I don't want to enforce it unless performance requires it
+Performance/Casecmp:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
   Enabled: false
