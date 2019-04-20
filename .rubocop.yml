@@ -21,6 +21,9 @@ Layout/EmptyLineAfterMagicComment:
 Layout/IndentArray:
   Enabled: false
 
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+
 Style/BlockDelimiters:
   Enabled: false
 
@@ -41,7 +44,7 @@ Style/TrailingCommaInHashLiteral:
 
 # Require trailing commas for multiline argument lists
 Style/TrailingCommaInArguments:
-  EnforcedStyleForMultiline: comma
+  Enabled: false
 
 # Allow but do not require modifier usage of if/unless
 Style/IfUnlessModifier:
