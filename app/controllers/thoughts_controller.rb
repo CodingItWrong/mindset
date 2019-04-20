@@ -59,7 +59,8 @@ class ThoughtsController < ApplicationController
 
   def other_thoughts
     last_id = flash[:last_thought_id]
-    @other_thoughts ||= current_user.unresolved_thoughts.where('id <> ?', last_id)
+    @other_thoughts ||=
+      current_user.unresolved_thoughts.where('id <> ?', last_id)
   end
 
   def new_thought_params

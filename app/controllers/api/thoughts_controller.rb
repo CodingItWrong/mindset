@@ -42,8 +42,7 @@ module Api
     end
 
     def thought_params
-      thought_params = params.require(:thought)
-                             .permit(:text, :resolution)
+      thought_params = params.require(:thought).permit(:text, :resolution)
       if (tags = params[:thought][:tags])
         thought_params = thought_params.merge(tag_list: tags)
       end
