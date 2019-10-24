@@ -1,8 +1,7 @@
-FROM ruby:2.6.3
+FROM ruby:2.6.5
 
 RUN apt-get update && \
     apt-get install -y nodejs
-RUN gem install nokogiri -v 1.10.1
 
 RUN mkdir /myapp
 WORKDIR /myapp
