@@ -12,7 +12,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'devise'
 gem 'doorkeeper'
 gem 'dotenv-rails'
-gem 'acts-as-taggable-on', '~> 6.0'
+gem 'acts-as-taggable-on', '~> 6.5'
 gem 'rack-cors', :require => 'rack/cors'
 
 group :development do
